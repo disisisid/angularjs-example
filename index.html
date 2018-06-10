@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html ng-app="myApp" ng-cloak>
+	<head>
+		<link rel="stylesheet" type="text/css" href="styles.css" />
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+		<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Quicksand" />
+	  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.5/angular.min.js"></script>
+	  <meta name="viewport" content="width=device-width, initial-scale=1">
+	  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+		<script src="app.js"></script>
+	</head>
+	<body>
+	<div class="container" ng-controller="myAppController">
+		<h1>Hacker News</h1>
+		<div id="search_field" class="form-group">
+			<input ng-model="search" autofocus placeholder="s e a r c h">
+		</div>
+		
+		<div class="wrapper" ng-repeat="post in posts | filter: search">
+			<div id="post_title">
+				<a ng-href="{{post.url}}" target="_blank"><li>{{post.title}}</li></a>
+			</div>
+			<div id="post_details">
+				{{post.num_points}} point
+				<span ng-hide="post.num_points == 1">s</span>
+				by {{post.author}} {{post.created_at}} | {{post.num_comments}} comment<span ng-hide="post.num_comments == 1">s</span>
+			</div>
+		</div>
+	</div>
+	</body>
+</html>
